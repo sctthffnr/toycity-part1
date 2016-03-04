@@ -65,7 +65,10 @@ brands.each do |brand|
 	# Create a hash containing a specific brand name
 	brand_hash = products_hash["items"].select { |toy| toy["brand"] == brand}
 	# Count and print the number of the brand's toys we stock
-	puts "Number of Products: #{brand_hash.length}"
+	stock = brand_hash.inject(0) do |total_stock, brand|
+		total_stock + brand['stock']
+	end
+	puts "Number of Products: #{stock}"
 	# Calculate and print the average price of the brand's toys
 	# Calculate and print the total revenue of all the brand's toy sales combined
 	total_price = 0
